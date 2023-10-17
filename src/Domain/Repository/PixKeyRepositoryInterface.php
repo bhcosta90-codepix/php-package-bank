@@ -13,9 +13,9 @@ interface PixKeyRepositoryInterface
 
     public function findKeyByKind(string $key, string $kind): ?PixKey;
 
-    public function addAccount(Account $account);
+    public function addAccount(Account $account): void;
 
     public function findAccount(string $id): ?Account;
 
-    public function verifyNumber(string $agency, string $number);
+    public function verifyNumber(string $agency, string $number): bool;
 }
