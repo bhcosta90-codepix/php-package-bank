@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bhcosta90/clean-architecture",
-            "version": "1.0.12",
+            "version": "1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-domain-package.git",
-                "reference": "379bc50840871e7e970784fb6d702a768662aeef"
+                "reference": "2cc4901870cd804457b0d2e87a78e09a0813bb4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/379bc50840871e7e970784fb6d702a768662aeef",
-                "reference": "379bc50840871e7e970784fb6d702a768662aeef",
+                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/2cc4901870cd804457b0d2e87a78e09a0813bb4b",
+                "reference": "2cc4901870cd804457b0d2e87a78e09a0813bb4b",
                 "shasum": ""
             },
             "require": {
@@ -58,23 +58,23 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.12",
+                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.1.13",
                 "issues": "https://github.com/bhcosta90/php-domain-package/issues"
             },
-            "time": "2023-10-17T21:01:32+00:00"
+            "time": "2023-10-17T22:57:31+00:00"
         },
         {
             "name": "bhcosta90/entity",
-            "version": "1.0.12",
+            "version": "1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-entity-package.git",
-                "reference": "665515dd38f2e008cf9b543dca99e5e857c761ab"
+                "reference": "0d1daca9be8552ab9d7298f2675a6787313150a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/665515dd38f2e008cf9b543dca99e5e857c761ab",
-                "reference": "665515dd38f2e008cf9b543dca99e5e857c761ab",
+                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/0d1daca9be8552ab9d7298f2675a6787313150a0",
+                "reference": "0d1daca9be8552ab9d7298f2675a6787313150a0",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "pestphp/pest": "^2.19",
                 "symfony/var-dumper": "^6.3"
             },
-            "type": "library",
+            "type": "project",
             "autoload": {
                 "psr-4": {
                     "Costa\\Entity\\": "src/"
@@ -104,6 +104,9 @@
                     "vendor/bin/captainhook install -f -s"
                 ]
             },
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Bruno Costa",
@@ -111,10 +114,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.12",
+                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.1.13",
                 "issues": "https://github.com/bhcosta90/php-entity-package/issues"
             },
-            "time": "2023-10-17T21:00:14+00:00"
+            "time": "2023-10-17T22:54:48+00:00"
         },
         {
             "name": "brick/math",
