@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5de69c45641834b2930706f887da7ab",
+    "content-hash": "ba443e51e8aabb19cb512254ee6a0d66",
     "packages": [
         {
             "name": "bhcosta90/clean-architecture",
-            "version": "1.0.11",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-domain-package.git",
-                "reference": "4ed900d868efc4a701fcc6a7df62ba093728c2e3"
+                "reference": "379bc50840871e7e970784fb6d702a768662aeef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/4ed900d868efc4a701fcc6a7df62ba093728c2e3",
-                "reference": "4ed900d868efc4a701fcc6a7df62ba093728c2e3",
+                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/379bc50840871e7e970784fb6d702a768662aeef",
+                "reference": "379bc50840871e7e970784fb6d702a768662aeef",
                 "shasum": ""
             },
             "require": {
@@ -58,23 +58,23 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.11",
+                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.12",
                 "issues": "https://github.com/bhcosta90/php-domain-package/issues"
             },
-            "time": "2023-10-17T17:32:37+00:00"
+            "time": "2023-10-17T21:01:32+00:00"
         },
         {
             "name": "bhcosta90/entity",
-            "version": "1.0.10",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-entity-package.git",
-                "reference": "11e65e15e2190aa1f0671428f12e264cb29d75d2"
+                "reference": "665515dd38f2e008cf9b543dca99e5e857c761ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/11e65e15e2190aa1f0671428f12e264cb29d75d2",
-                "reference": "11e65e15e2190aa1f0671428f12e264cb29d75d2",
+                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/665515dd38f2e008cf9b543dca99e5e857c761ab",
+                "reference": "665515dd38f2e008cf9b543dca99e5e857c761ab",
                 "shasum": ""
             },
             "require": {
@@ -111,10 +111,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.10",
+                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.12",
                 "issues": "https://github.com/bhcosta90/php-entity-package/issues"
             },
-            "time": "2023-10-17T15:27:18+00:00"
+            "time": "2023-10-17T21:00:14+00:00"
         },
         {
             "name": "brick/math",
