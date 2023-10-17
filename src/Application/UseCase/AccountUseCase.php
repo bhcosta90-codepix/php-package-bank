@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CodePix\Bank\Application\UseCase;
 
+use BRCas\CA\ValueObject\Password;
 use CodePix\Bank\Application\Exception\NotFoundException;
 use CodePix\Bank\Application\integration\PixKeyIntegrationInterface;
 use CodePix\Bank\Domain\Entities\Account;
@@ -20,7 +21,7 @@ class AccountUseCase
         //
     }
 
-    public function register(string $bank, string $name, string $agency): Account
+    public function register(string $bank, string $name, string $agency, string $password): Account
     {
         do {
             $number = (string)rand(000000, 9999999);
@@ -33,7 +34,8 @@ class AccountUseCase
             name: $name,
             bank: new Uuid($bank),
             agency: new Uuid($agency),
-            number: $number
+            number: $number,
+            password: new Password($password)
         );
 
         $this->pixKeyRepository->addAccount($account);

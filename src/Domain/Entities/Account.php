@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CodePix\Bank\Domain\Entities;
 
+use BRCas\CA\ValueObject\Password;
 use Costa\Entity\Data;
 use Costa\Entity\ValueObject\Uuid;
 
@@ -22,6 +23,7 @@ class Account extends Data
         protected Uuid $bank,
         protected Uuid $agency,
         protected string $number,
+        protected Password $password,
     ) {
         parent::__construct();
     }
