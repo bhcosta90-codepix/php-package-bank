@@ -3,7 +3,8 @@
     "enabled": true,
     "actions": [
       {
-        "action": "./vendor/bin/pest --parallel --coverage --min=90",
+        "_action": "./vendor/bin/pest --parallel --coverage --min=90",
+        "action": "./vendor/bin/pest --parallel",
         "options": []
       }
     ]

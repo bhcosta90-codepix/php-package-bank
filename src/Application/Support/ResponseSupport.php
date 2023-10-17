@@ -6,7 +6,11 @@ namespace CodePix\Bank\Application\Support;
 
 class ResponseSupport
 {
-    public function __construct(public int $status, public array $response, public ?string $error = null)
-    {
+    public function __construct(
+        public int $status,
+        public string $id,
+        public ?array $response,
+        public ?string $error = null
+    ) {
     }
 }
