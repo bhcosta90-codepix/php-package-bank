@@ -20,15 +20,19 @@ class AccountUseCase
         //
     }
 
-    public function register(string $bank, string $name, string $agency, string $number): Account
+    public function register(string $bank, string $name, string $agency): Account
     {
+        do {
+            $number = (string)rand(000000, 9999999);
+        } while ($this->pixKeyRepository->verifyNumber($agency, $number));
+
         $response = $this->pixKeyIntegration->addAccount($bank, $name, $agency, $number);
 
         $account = new Account(
             reference: $response->id,
             name: $name,
             bank: new Uuid($bank),
-            agency: $agency,
+            agency: new Uuid($agency),
             number: $number
         );
 

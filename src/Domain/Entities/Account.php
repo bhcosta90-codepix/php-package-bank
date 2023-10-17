@@ -13,7 +13,7 @@ class Account extends Data
         protected string $reference,
         protected string $name,
         protected Uuid $bank,
-        protected string $agency,
+        protected Uuid $agency,
         protected string $number,
         /**
          * @var PixKey[]
