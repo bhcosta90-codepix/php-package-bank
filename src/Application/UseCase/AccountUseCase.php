@@ -27,7 +27,8 @@ class AccountUseCase
             $number = (string)rand(000000, 9999999);
         } while ($this->pixKeyRepository->verifyNumber($agency, $number));
 
-        $response = $this->pixKeyIntegration->addAccount($bank, $name, $agency, $number);
+        $codeAgency = $this->pixKeyRepository->getAgencyCode($agency);
+        $response = $this->pixKeyIntegration->addAccount($bank, $name, $codeAgency, $number);
 
         $account = new Account(
             reference: $response->id,
