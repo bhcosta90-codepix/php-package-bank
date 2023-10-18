@@ -21,7 +21,7 @@ class Account extends Data
         protected string $reference,
         protected string $name,
         protected Uuid $bank,
-        protected Uuid $agency,
+        protected string $agency,
         protected string $number,
         protected Password $password,
     ) {
