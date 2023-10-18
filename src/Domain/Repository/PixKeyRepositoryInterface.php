@@ -19,5 +19,5 @@ interface PixKeyRepositoryInterface
 
     public function verifyNumber(string $agency, string $number): bool;
 
-    public function getAgencyCode(string $id): string;
+    public function getAgencyCode(string $id): ?string;
 }

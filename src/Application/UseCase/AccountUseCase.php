@@ -21,6 +21,9 @@ class AccountUseCase
         //
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function register(string $bank, string $name, string $agency, string $password): Account
     {
         do {
@@ -28,6 +31,11 @@ class AccountUseCase
         } while ($this->pixKeyRepository->verifyNumber($agency, $number));
 
         $codeAgency = $this->pixKeyRepository->getAgencyCode($agency);
+
+        if (empty($codeAgency)) {
+            throw new NotFoundException('Agency not found');
+        }
+
         $response = $this->pixKeyIntegration->addAccount($bank, $name, $codeAgency, $number);
 
         $account = new Account(
