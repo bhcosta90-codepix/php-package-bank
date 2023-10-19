@@ -18,7 +18,6 @@ class Account extends Data
     protected array $pixKeys = [];
 
     public function __construct(
-        protected string $reference,
         protected string $name,
         protected Uuid $bank,
         protected Uuid $agency,

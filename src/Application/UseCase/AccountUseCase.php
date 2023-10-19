@@ -16,7 +16,6 @@ class AccountUseCase
 {
     public function __construct(
         protected PixKeyRepositoryInterface $pixKeyRepository,
-        protected PixKeyIntegrationInterface $pixKeyIntegration
     ) {
         //
     }
@@ -36,10 +35,7 @@ class AccountUseCase
             throw new NotFoundException('Agency not found');
         }
 
-        $response = $this->pixKeyIntegration->addAccount($bank, $name, $codeAgency, $number);
-
         $account = new Account(
-            reference: $response->id,
             name: $name,
             bank: new Uuid($bank),
             agency: new Uuid($agency),

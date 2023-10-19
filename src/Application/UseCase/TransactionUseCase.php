@@ -19,7 +19,6 @@ class TransactionUseCase
     public function __construct(
         protected PixKeyRepositoryInterface $pixKeyRepository,
         protected TransactionRepositoryInterface $transactionRepository,
-        protected TransactionIntegrationInterface $transactionIntegration,
     ) {
         //
     }
@@ -38,10 +37,7 @@ class TransactionUseCase
             throw new NotFoundException('Pix not found');
         }
 
-        $response = $this->transactionIntegration->register($account->id(), $value, $kind, $key, $description);
-
         $transaction = new Transaction(
-            reference: $response->id,
             accountFrom: $account,
             value: $value,
             pixKeyTo: $pix,
