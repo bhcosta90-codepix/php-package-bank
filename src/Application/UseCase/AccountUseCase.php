@@ -38,7 +38,7 @@ class AccountUseCase
         $account = new Account(
             name: $name,
             bank: new Uuid($bank),
-            agency: new Uuid($agency),
+            agency: $agency,
             number: $number,
             password: new Password($password)
         );
