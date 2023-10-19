@@ -31,7 +31,12 @@ class PixUseCase
             throw new NotFoundException('Account not found');
         }
 
-        $response = $this->pixKeyIntegration->register((string)$account->bank, $account->id(), $kind, $key);
+        $response = $this->pixKeyIntegration->register(
+            (string)$account->bank,
+            $account->id(),
+            $kind,
+            $key
+        );
 
         $pix = new PixKey(
             reference: $response->id,
