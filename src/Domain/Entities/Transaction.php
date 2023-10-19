@@ -10,7 +10,6 @@ use Costa\Entity\Data;
 class Transaction extends Data
 {
     public function __construct(
-        protected string $reference,
         protected Account $accountFrom,
         protected float $value,
         protected PixKey $pixKeyTo,
