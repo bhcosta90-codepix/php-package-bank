@@ -29,16 +29,16 @@ class AccountUseCase
             $number = (string)rand(000000, 9999999);
         } while ($this->pixKeyRepository->verifyNumber($agency, $number));
 
-        $codeAgency = $this->pixKeyRepository->getAgencyByCode($agency);
+        $agency = $this->pixKeyRepository->getAgencyByCode($agency);
 
-        if (empty($codeAgency)) {
+        if (empty($agency)) {
             throw new NotFoundException('Agency not found');
         }
 
         $account = new Account(
             name: $name,
             bank: new Uuid($bank),
-            agency: $agency,
+            agency: new Uuid($agency),
             number: $number,
             password: new Password($password)
         );
