@@ -20,7 +20,7 @@ class Account extends Data
     public function __construct(
         protected string $name,
         protected Uuid $bank,
-        protected Uuid $agency,
+        protected string $agency,
         protected string $number,
         protected Password $password,
     ) {
