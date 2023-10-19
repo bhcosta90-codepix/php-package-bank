@@ -25,7 +25,7 @@ class PixUseCase
      * @throws NotFoundException
      * @throws UseCaseException
      */
-    public function register(string $kind, string $key, string $account): PixKey
+    public function register(string $kind, ?string $key, string $account): PixKey
     {
         if (!$account = $this->pixKeyRepository->findAccount($account)) {
             throw new NotFoundException('Account not found');
