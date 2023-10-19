@@ -11,6 +11,7 @@ use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
 use CodePix\Bank\Domain\Entities\PixKey;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use Costa\Entity\ValueObject\Uuid;
+use Exception;
 
 class PixUseCase
 {
@@ -24,6 +25,7 @@ class PixUseCase
     /**
      * @throws NotFoundException
      * @throws UseCaseException
+     * @throws Exception
      */
     public function register(string $kind, ?string $key, string $account): PixKey
     {
@@ -38,12 +40,16 @@ class PixUseCase
             $key
         );
 
+        if ($response->status > 201) {
+            throw new Exception();
+        }
+
         $pix = new PixKey(
             reference: $response->id,
             bank: $account->bank,
             kind: KindPixKey::from($kind),
             account: $account,
-            key: $key,
+            key: $response->key,
         );
 
         $response = $this->pixKeyRepository->register($pix);

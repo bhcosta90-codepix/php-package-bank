@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CodePix\Bank\Application\Integration\DTO;
+namespace CodePix\Bank\Application\Integration\Response;
 
 class ResponseKeyValueOutput
 {
