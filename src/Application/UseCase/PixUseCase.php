@@ -10,7 +10,6 @@ use CodePix\Bank\Application\integration\PixKeyIntegrationInterface;
 use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
 use CodePix\Bank\Domain\Entities\PixKey;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
-use Costa\Entity\ValueObject\Uuid;
 use Exception;
 
 class PixUseCase

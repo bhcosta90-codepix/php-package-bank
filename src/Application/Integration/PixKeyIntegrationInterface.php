@@ -6,5 +6,10 @@ namespace CodePix\Bank\Application\Integration;
 
 interface PixKeyIntegrationInterface
 {
-    public function register(string $bank, string $account, string $kind, ?string $key): Response\ResponseKeyValueOutput;
+    public function register(
+        string $bank,
+        string $account,
+        string $kind,
+        ?string $key
+    ): Response\ResponseKeyValueOutput;
 }
