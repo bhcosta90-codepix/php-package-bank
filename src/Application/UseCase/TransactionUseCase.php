@@ -7,12 +7,9 @@ namespace CodePix\Bank\Application\UseCase;
 use CodePix\Bank\Application\Exception\NotFoundException;
 use CodePix\Bank\Application\Exception\UseCaseException;
 use CodePix\Bank\Application\integration\TransactionIntegrationInterface;
-use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
-use CodePix\Bank\Domain\Entities\PixKey;
 use CodePix\Bank\Domain\Entities\Transaction;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use CodePix\Bank\Domain\Repository\TransactionRepositoryInterface;
-use Costa\Entity\ValueObject\Uuid;
 
 class TransactionUseCase
 {

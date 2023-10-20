@@ -6,9 +6,7 @@ namespace CodePix\Bank\Application\UseCase;
 
 use BRCas\CA\ValueObject\Password;
 use CodePix\Bank\Application\Exception\NotFoundException;
-use CodePix\Bank\Application\integration\PixKeyIntegrationInterface;
 use CodePix\Bank\Domain\Entities\Account;
-use CodePix\Bank\Domain\Entities\PixKey;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use Costa\Entity\ValueObject\Uuid;
 
