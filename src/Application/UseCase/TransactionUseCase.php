@@ -51,7 +51,7 @@ class TransactionUseCase
             throw new UseCaseException();
         }
 
-        $this->eventManager->dispatch($transaction->events());
+        $this->eventManager->dispatch($transaction->getEvents());
 
         return $transaction;
     }
