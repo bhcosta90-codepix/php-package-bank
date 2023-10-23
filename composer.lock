@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bhcosta90/clean-architecture",
-            "version": "1.1.13",
+            "version": "1.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-domain-package.git",
-                "reference": "2cc4901870cd804457b0d2e87a78e09a0813bb4b"
+                "reference": "8406c537571929b427f26e9357f79e9c656d3262"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/2cc4901870cd804457b0d2e87a78e09a0813bb4b",
-                "reference": "2cc4901870cd804457b0d2e87a78e09a0813bb4b",
+                "url": "https://api.github.com/repos/bhcosta90/php-domain-package/zipball/8406c537571929b427f26e9357f79e9c656d3262",
+                "reference": "8406c537571929b427f26e9357f79e9c656d3262",
                 "shasum": ""
             },
             "require": {
@@ -58,23 +58,23 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.1.13",
+                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.17",
                 "issues": "https://github.com/bhcosta90/php-domain-package/issues"
             },
-            "time": "2023-10-17T22:57:31+00:00"
+            "time": "2023-10-23T20:40:47+00:00"
         },
         {
             "name": "bhcosta90/entity",
-            "version": "1.1.13",
+            "version": "1.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-entity-package.git",
-                "reference": "0d1daca9be8552ab9d7298f2675a6787313150a0"
+                "reference": "aa4cad9a1e8594462e6c62886d68039da7bb230f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/0d1daca9be8552ab9d7298f2675a6787313150a0",
-                "reference": "0d1daca9be8552ab9d7298f2675a6787313150a0",
+                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/aa4cad9a1e8594462e6c62886d68039da7bb230f",
+                "reference": "aa4cad9a1e8594462e6c62886d68039da7bb230f",
                 "shasum": ""
             },
             "require": {
@@ -114,10 +114,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.1.13",
+                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.16",
                 "issues": "https://github.com/bhcosta90/php-entity-package/issues"
             },
-            "time": "2023-10-17T22:54:48+00:00"
+            "time": "2023-10-23T20:24:51+00:00"
         },
         {
             "name": "brick/math",
@@ -790,16 +790,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.3.3",
+            "version": "v6.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "3ed078c54bc98bbe4414e1e9b2d5e85ed5a5c8bd"
+                "reference": "869b26c7a9d4b8a48afdd77ab36031909c87e3a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/3ed078c54bc98bbe4414e1e9b2d5e85ed5a5c8bd",
-                "reference": "3ed078c54bc98bbe4414e1e9b2d5e85ed5a5c8bd",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/869b26c7a9d4b8a48afdd77ab36031909c87e3a2",
+                "reference": "869b26c7a9d4b8a48afdd77ab36031909c87e3a2",
                 "shasum": ""
             },
             "require": {
@@ -865,7 +865,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.3.3"
+                "source": "https://github.com/symfony/translation/tree/v6.3.6"
             },
             "funding": [
                 {
@@ -881,7 +881,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-31T07:08:24+00:00"
+            "time": "2023-10-17T11:32:53+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -4685,16 +4685,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v6.3.5",
+            "version": "v6.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "3d9999376be5fea8de47752837a3e1d1c5f69ef5"
+                "reference": "999ede244507c32b8e43aebaa10e9fce20de7c97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/3d9999376be5fea8de47752837a3e1d1c5f69ef5",
-                "reference": "3d9999376be5fea8de47752837a3e1d1c5f69ef5",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/999ede244507c32b8e43aebaa10e9fce20de7c97",
+                "reference": "999ede244507c32b8e43aebaa10e9fce20de7c97",
                 "shasum": ""
             },
             "require": {
@@ -4749,7 +4749,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v6.3.5"
+                "source": "https://github.com/symfony/var-dumper/tree/v6.3.6"
             },
             "funding": [
                 {
@@ -4765,7 +4765,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-12T10:11:35+00:00"
+            "time": "2023-10-12T18:45:56+00:00"
         },
         {
             "name": "ta-tikoma/phpunit-architecture-test",
