@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "bhcosta90/clean-architecture",
-            "version": "1.0.17",
+            "version": "1.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-domain-package.git",
@@ -58,23 +58,23 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.17",
+                "source": "https://github.com/bhcosta90/php-domain-package/tree/1.0.18",
                 "issues": "https://github.com/bhcosta90/php-domain-package/issues"
             },
             "time": "2023-10-23T20:40:47+00:00"
         },
         {
             "name": "bhcosta90/entity",
-            "version": "1.0.16",
+            "version": "1.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bhcosta90/php-entity-package.git",
-                "reference": "aa4cad9a1e8594462e6c62886d68039da7bb230f"
+                "reference": "a3bb9c4c40fd4cc32e45d151f5f353202afc6522"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/aa4cad9a1e8594462e6c62886d68039da7bb230f",
-                "reference": "aa4cad9a1e8594462e6c62886d68039da7bb230f",
+                "url": "https://api.github.com/repos/bhcosta90/php-entity-package/zipball/a3bb9c4c40fd4cc32e45d151f5f353202afc6522",
+                "reference": "a3bb9c4c40fd4cc32e45d151f5f353202afc6522",
                 "shasum": ""
             },
             "require": {
@@ -114,10 +114,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.16",
+                "source": "https://github.com/bhcosta90/php-entity-package/tree/1.0.18",
                 "issues": "https://github.com/bhcosta90/php-entity-package/issues"
             },
-            "time": "2023-10-23T20:24:51+00:00"
+            "time": "2023-10-23T21:28:04+00:00"
         },
         {
             "name": "brick/math",

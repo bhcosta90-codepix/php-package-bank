@@ -19,6 +19,6 @@ class Transaction extends Data
         protected ?string $cancelDescription = null,
     ) {
         parent::__construct();
-        $this->add(new CreateEvent($this));
+        $this->addEvent(new CreateEvent($this));
     }
 }
