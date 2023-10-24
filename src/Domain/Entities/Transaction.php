@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CodePix\Bank\Domain\Entities;
 
+use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
 use CodePix\Bank\Domain\Entities\Enum\Transaction\StatusTransaction;
 use CodePix\Bank\Domain\Events\Transaction\ConfirmedEvent;
 use CodePix\Bank\Domain\Events\Transaction\CreateEvent;
@@ -15,7 +16,8 @@ class Transaction extends Data
     public function __construct(
         protected Account $accountFrom,
         protected float $value,
-        protected PixKey $pixKeyTo,
+        protected KindPixKey $kind,
+        protected string $key,
         protected string $description,
         protected StatusTransaction $status = StatusTransaction::PENDING,
         protected ?Uuid $debit = null,

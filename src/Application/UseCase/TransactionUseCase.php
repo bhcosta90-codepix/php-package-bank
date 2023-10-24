@@ -7,6 +7,7 @@ namespace CodePix\Bank\Application\UseCase;
 use BRCas\CA\Contracts\Event\EventManagerInterface;
 use CodePix\Bank\Application\Exception\NotFoundException;
 use CodePix\Bank\Application\Exception\UseCaseException;
+use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
 use CodePix\Bank\Domain\Entities\Transaction;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use CodePix\Bank\Domain\Repository\TransactionRepositoryInterface;
@@ -46,7 +47,8 @@ class TransactionUseCase
         $transaction = new Transaction(
             accountFrom: $account,
             value: $value,
-            pixKeyTo: $pix,
+            kind: $pix->kind,
+            key: $pix->key,
             description: $description,
         );
 
@@ -78,14 +80,11 @@ class TransactionUseCase
             throw new NotFoundException('Account not found');
         }
 
-        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key)) {
-            throw new NotFoundException('Pix not found');
-        }
-
         $transaction = new Transaction(
             accountFrom: $account,
             value: $value,
-            pixKeyTo: $pix,
+            kind: KindPixKey::from($kind),
+            key: $key,
             description: $description,
             debit: new Uuid($debit),
         );
