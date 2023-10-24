@@ -31,6 +31,7 @@ class TransactionUseCase
      * @throws NotFoundException
      * @throws NotificationException
      * @throws UseCaseException
+     * @throws Throwable
      */
     public function registerDebit(
         string $account,
@@ -47,23 +48,28 @@ class TransactionUseCase
             throw new NotFoundException('Pix not found');
         }
 
-        $transaction = new Transaction(
-            accountFrom: $account,
-            value: $value,
-            kind: $pix->kind,
-            key: $pix->key,
-            description: $description,
-        );
+        try {
+            $transaction = new Transaction(
+                accountFrom: $account,
+                value: $value,
+                kind: $pix->kind,
+                key: $pix->key,
+                description: $description,
+            );
 
-        $response = $this->transactionRepository->registerDebit($transaction);
+            $response = $this->transactionRepository->registerDebit($transaction);
 
-        if (!$response) {
-            throw new UseCaseException('Register transaction with error');
+            if (!$response) {
+                throw new UseCaseException('Register transaction with error');
+            }
+
+            $this->eventManager->dispatch($transaction->getEvents());
+            $this->databaseTransaction->commit();
+            return $transaction;
+        } catch (Throwable $e) {
+            $this->databaseTransaction->rollback();
+            throw $e;
         }
-
-        $this->eventManager->dispatch($transaction->getEvents());
-
-        return $transaction;
     }
 
     /**
