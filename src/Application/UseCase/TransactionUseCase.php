@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CodePix\Bank\Application\UseCase;
 
 use BRCas\CA\Contracts\Event\EventManagerInterface;
+use BRCas\CA\Contracts\Transaction\DatabaseTransactionInterface;
 use CodePix\Bank\Application\Exception\NotFoundException;
 use CodePix\Bank\Application\Exception\UseCaseException;
 use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
@@ -13,6 +14,7 @@ use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use CodePix\Bank\Domain\Repository\TransactionRepositoryInterface;
 use Costa\Entity\Exceptions\NotificationException;
 use Costa\Entity\ValueObject\Uuid;
+use Throwable;
 
 class TransactionUseCase
 {
@@ -20,6 +22,7 @@ class TransactionUseCase
         protected PixKeyRepositoryInterface $pixKeyRepository,
         protected TransactionRepositoryInterface $transactionRepository,
         protected EventManagerInterface $eventManager,
+        protected DatabaseTransactionInterface $databaseTransaction,
     ) {
         //
     }
@@ -36,7 +39,7 @@ class TransactionUseCase
         string $key,
         string $description
     ): Transaction {
-        if (!$account = $this->pixKeyRepository->findAccount($account)) {
+        if (!$account = $this->pixKeyRepository->findAccount($account, false)) {
             throw new NotFoundException('Account not found');
         }
 
@@ -55,7 +58,7 @@ class TransactionUseCase
         $response = $this->transactionRepository->registerDebit($transaction);
 
         if (!$response) {
-            throw new UseCaseException();
+            throw new UseCaseException('Register transaction with error');
         }
 
         $this->eventManager->dispatch($transaction->getEvents());
@@ -67,6 +70,7 @@ class TransactionUseCase
      * @throws NotFoundException
      * @throws NotificationException
      * @throws UseCaseException
+     * @throws Throwable
      */
     public function registerCredit(
         string $debit,
@@ -76,7 +80,7 @@ class TransactionUseCase
         string $key,
         string $description
     ): Transaction {
-        if (!$account = $this->pixKeyRepository->findAccount($account)) {
+        if (!$account = $this->pixKeyRepository->findAccount($account, true)) {
             throw new NotFoundException('Account not found');
         }
 
@@ -89,14 +93,27 @@ class TransactionUseCase
             debit: new Uuid($debit),
         );
 
-        $response = $this->transactionRepository->registerCredit($transaction);
+        try {
+            $response = $this->transactionRepository->registerCredit($transaction);
 
-        if (!$response) {
-            throw new UseCaseException();
+            if (!$response) {
+                throw new UseCaseException('Register transaction with error');
+            }
+
+            $this->eventManager->dispatch($transaction->getEvents());
+
+            $account->credit($value);
+
+            if (!$this->pixKeyRepository->updateAccount($account)) {
+                throw new UseCaseException('Unable to save account');
+            }
+
+            $this->databaseTransaction->commit();
+
+            return $transaction;
+        } catch (Throwable $e) {
+            $this->databaseTransaction->rollback();
+            throw $e;
         }
-
-        $this->eventManager->dispatch($transaction->getEvents());
-
-        return $transaction;
     }
 }
