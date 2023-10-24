@@ -22,7 +22,7 @@ class Transaction extends Data
         protected ?string $cancelDescription = null,
     ) {
         parent::__construct();
-        if ($this->debit) {
+        if (empty($this->debit)) {
             $this->addEvent(new CreateEvent($this));
         } else {
             $this->addEvent(new ConfirmedEvent($this));
