@@ -98,6 +98,7 @@ class TransactionUseCase
             description: $description,
             debit: new Uuid($debit),
         );
+        $transaction->completed();
 
         try {
             $response = $this->transactionRepository->registerCredit($transaction);
@@ -105,8 +106,6 @@ class TransactionUseCase
             if (!$response) {
                 throw new UseCaseException('Register transaction with error');
             }
-
-            $transaction->completed();
 
             if (!$this->pixKeyRepository->updateAccount($account)) {
                 throw new UseCaseException('Unable to save account');
