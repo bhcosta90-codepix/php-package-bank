@@ -30,4 +30,15 @@ class Transaction extends Data
             $this->addEvent(new ConfirmedEvent($this));
         }
     }
+
+    public function completed(): void
+    {
+        $this->status = StatusTransaction::COMPLETED;
+
+        if (empty($this->debit)) {
+            $this->accountFrom->debit($this->value);
+        } else {
+            $this->accountFrom->credit($this->value);
+        }
+    }
 }

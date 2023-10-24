@@ -100,15 +100,14 @@ class TransactionUseCase
                 throw new UseCaseException('Register transaction with error');
             }
 
-            $this->eventManager->dispatch($transaction->getEvents());
-
-            $account->credit($value);
+            $transaction->completed();
 
             if (!$this->pixKeyRepository->updateAccount($account)) {
                 throw new UseCaseException('Unable to save account');
             }
 
             $this->databaseTransaction->commit();
+            $this->eventManager->dispatch($transaction->getEvents());
 
             return $transaction;
         } catch (Throwable $e) {
