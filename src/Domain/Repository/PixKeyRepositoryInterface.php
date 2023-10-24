@@ -15,7 +15,8 @@ interface PixKeyRepositoryInterface
 
     public function addAccount(Account $account);
 
-    public function findAccount(string $id): ?Account;
+    public function findAccount(string $id, bool $locked): ?Account;
+    public function updateAccount(Account $account): bool;
 
     public function verifyNumber(string $agency, string $number): bool;
 

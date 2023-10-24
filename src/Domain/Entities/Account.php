@@ -26,4 +26,14 @@ class Account extends Data
     ) {
         parent::__construct();
     }
+
+    public function credit(float $value): void
+    {
+        $this->balance += $value;
+    }
+
+    public function debit(float $value): void
+    {
+        $this->balance -= $value;
+    }
 }
