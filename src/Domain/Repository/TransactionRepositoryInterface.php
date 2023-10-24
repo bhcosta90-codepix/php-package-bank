@@ -10,6 +10,8 @@ interface TransactionRepositoryInterface
 {
     public function registerDebit(Transaction $transaction): bool;
 
+    public function registerCredit(Transaction $transaction): bool;
+
     public function save(Transaction $transaction): bool;
 
     public function find(string $id): ?Transaction;

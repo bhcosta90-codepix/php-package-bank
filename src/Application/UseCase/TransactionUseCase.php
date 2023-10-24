@@ -12,6 +12,7 @@ use CodePix\Bank\Domain\Entities\Transaction;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use CodePix\Bank\Domain\Repository\TransactionRepositoryInterface;
 use Costa\Entity\Exceptions\NotificationException;
+use Costa\Entity\ValueObject\Uuid;
 
 class TransactionUseCase
 {
@@ -46,6 +47,40 @@ class TransactionUseCase
         );
 
         $response = $this->transactionRepository->registerDebit($transaction);
+
+        if (!$response) {
+            throw new UseCaseException();
+        }
+
+        $this->eventManager->dispatch($transaction->getEvents());
+
+        return $transaction;
+    }
+
+    /**
+     * @throws NotFoundException
+     * @throws NotificationException
+     * @throws UseCaseException
+     */
+    public function registerCredit(string $debit, string $account, float $value, string $kind, string $key, string $description): Transaction
+    {
+        if (!$account = $this->pixKeyRepository->findAccount($account)) {
+            throw new NotFoundException('Account not found');
+        }
+
+        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key)) {
+            throw new NotFoundException('Pix not found');
+        }
+
+        $transaction = new Transaction(
+            accountFrom: $account,
+            value: $value,
+            pixKeyTo: $pix,
+            description: $description,
+            debit: new Uuid($debit),
+        );
+
+        $response = $this->transactionRepository->registerCredit($transaction);
 
         if (!$response) {
             throw new UseCaseException();
