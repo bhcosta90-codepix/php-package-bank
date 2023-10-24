@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CodePix\Bank\Domain\Entities;
 
 use CodePix\Bank\Domain\Entities\Enum\Transaction\StatusTransaction;
+use CodePix\Bank\Domain\Events\Transaction\CreateEvent;
 use Costa\Entity\Data;
 
 class Transaction extends Data
@@ -18,5 +19,6 @@ class Transaction extends Data
         protected ?string $cancelDescription = null,
     ) {
         parent::__construct();
+        $this->addEvent(new CreateEvent($this));
     }
 }
