@@ -8,7 +8,7 @@ use CodePix\Bank\Domain\Entities\Transaction;
 
 interface TransactionRepositoryInterface
 {
-    public function register(Transaction $transaction): bool;
+    public function registerDebit(Transaction $transaction): bool;
 
     public function save(Transaction $transaction): bool;
 

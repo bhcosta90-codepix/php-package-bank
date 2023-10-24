@@ -28,7 +28,7 @@ class TransactionUseCase
      * @throws NotificationException
      * @throws UseCaseException
      */
-    public function register(string $account, float $value, string $kind, string $key, string $description): Transaction
+    public function registerDebit(string $account, float $value, string $kind, string $key, string $description): Transaction
     {
         if (!$account = $this->pixKeyRepository->findAccount($account)) {
             throw new NotFoundException('Account not found');
@@ -45,7 +45,7 @@ class TransactionUseCase
             description: $description,
         );
 
-        $response = $this->transactionRepository->register($transaction);
+        $response = $this->transactionRepository->registerDebit($transaction);
 
         if (!$response) {
             throw new UseCaseException();
