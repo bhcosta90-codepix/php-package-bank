@@ -7,7 +7,6 @@ namespace CodePix\Bank\Application\UseCase;
 use BRCas\CA\Contracts\Event\EventManagerInterface;
 use CodePix\Bank\Application\Exception\NotFoundException;
 use CodePix\Bank\Application\Exception\UseCaseException;
-use CodePix\Bank\Application\integration\TransactionIntegrationInterface;
 use CodePix\Bank\Domain\Entities\Transaction;
 use CodePix\Bank\Domain\Repository\PixKeyRepositoryInterface;
 use CodePix\Bank\Domain\Repository\TransactionRepositoryInterface;
@@ -29,8 +28,13 @@ class TransactionUseCase
      * @throws NotificationException
      * @throws UseCaseException
      */
-    public function registerDebit(string $account, float $value, string $kind, string $key, string $description): Transaction
-    {
+    public function registerDebit(
+        string $account,
+        float $value,
+        string $kind,
+        string $key,
+        string $description
+    ): Transaction {
         if (!$account = $this->pixKeyRepository->findAccount($account)) {
             throw new NotFoundException('Account not found');
         }
@@ -62,8 +66,14 @@ class TransactionUseCase
      * @throws NotificationException
      * @throws UseCaseException
      */
-    public function registerCredit(string $debit, string $account, float $value, string $kind, string $key, string $description): Transaction
-    {
+    public function registerCredit(
+        string $debit,
+        string $account,
+        float $value,
+        string $kind,
+        string $key,
+        string $description
+    ): Transaction {
         if (!$account = $this->pixKeyRepository->findAccount($account)) {
             throw new NotFoundException('Account not found');
         }

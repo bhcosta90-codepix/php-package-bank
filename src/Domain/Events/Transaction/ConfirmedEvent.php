@@ -16,7 +16,7 @@ class ConfirmedEvent implements EventInterface
     public function payload(): array
     {
         return [
-            'id' => (string) $this->transaction->debit,
+            'id' => (string)$this->transaction->debit,
         ];
     }
 }
