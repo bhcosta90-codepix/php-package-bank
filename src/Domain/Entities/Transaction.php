@@ -39,8 +39,6 @@ class Transaction extends Data
         if (empty($this->debit)) {
             $this->accountFrom->debit($this->value);
             $this->addEvent(new CompletedEvent($this));
-        } else {
-            $this->accountFrom->credit($this->value);
         }
     }
 }
