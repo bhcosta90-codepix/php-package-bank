@@ -130,8 +130,14 @@ class TransactionUseCase
     {
         try {
             if ($transaction = $this->transactionRepository->find($id)) {
+
+                if (!$account = $this->pixKeyRepository->findAccount($transaction->accountFrom->id(), true)) {
+                    throw new NotFoundException('Account not found');
+                }
+
                 $transaction->completed();
                 $this->transactionRepository->save($transaction);
+                $this->pixKeyRepository->updateAccount($account);
                 $this->databaseTransaction->commit();
                 $this->eventManager->dispatch($transaction->getEvents());
                 return $transaction;
