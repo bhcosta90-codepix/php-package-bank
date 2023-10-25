@@ -54,14 +54,9 @@ class TransactionUseCase
             );
 
             $response = $this->transactionRepository->registerDebit($transaction);
-            $pixUpdate = $this->pixKeyRepository->updateAccount($pix->account);
 
             if (!$response) {
                 throw new UseCaseException('Register transaction with error');
-            }
-
-            if (!$pixUpdate) {
-                throw new UseCaseException('Update pix with error');
             }
 
             $this->eventManager->dispatch($transaction->getEvents());
@@ -96,7 +91,7 @@ class TransactionUseCase
         }
 
         $transaction = new Transaction(
-            accountFrom: $account,
+            accountFrom: $pix->account,
             value: $value,
             kind: KindPixKey::from($kind),
             key: $key,
@@ -141,6 +136,22 @@ class TransactionUseCase
                 $this->pixKeyRepository->updateAccount($transaction->accountFrom);
                 $this->databaseTransaction->commit();
                 $this->eventManager->dispatch($transaction->getEvents());
+                return $transaction;
+            }
+
+            throw new NotFoundException('Transaction ' . $id . ' not found');
+        } catch (Throwable $e) {
+            $this->databaseTransaction->rollback();
+            throw $e;
+        }
+    }
+
+    public function errorTransaction(string $id, string $message){
+        try {
+            if ($transaction = $this->transactionRepository->find($id)) {
+                $transaction->error($message);
+                $this->transactionRepository->save($transaction);
+                $this->databaseTransaction->commit();
                 return $transaction;
             }
 
