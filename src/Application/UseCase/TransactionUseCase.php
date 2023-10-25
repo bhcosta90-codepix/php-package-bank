@@ -146,7 +146,20 @@ class TransactionUseCase
         }
     }
 
-    public function errorTransaction(string $id, string $message){
+    /**
+     * @throws NotFoundException
+     */
+    public function find(string $id): ?Transaction
+    {
+        if ($transaction = $this->transactionRepository->find($id)) {
+            return $transaction;
+        }
+
+        throw new NotFoundException("Transaction {$id} not found");
+    }
+
+    public function errorTransaction(string $id, string $message)
+    {
         try {
             if ($transaction = $this->transactionRepository->find($id)) {
                 $transaction->error($message);
@@ -165,17 +178,5 @@ class TransactionUseCase
     public function index(string $account)
     {
         return $this->transactionRepository->getAll($account);
-    }
-
-    /**
-     * @throws NotFoundException
-     */
-    public function find(string $id): ?Transaction
-    {
-        if ($transaction = $this->transactionRepository->find($id)) {
-            return $transaction;
-        }
-
-        throw new NotFoundException("Transaction {$id} not found");
     }
 }
