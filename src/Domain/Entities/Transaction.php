@@ -42,7 +42,7 @@ class Transaction extends Data
         }
     }
 
-    public function error(string $message)
+    public function error(string $message): void
     {
         $this->cancelDescription = $message;
         $this->status = StatusTransaction::ERROR;
