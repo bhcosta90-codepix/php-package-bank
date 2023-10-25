@@ -154,4 +154,16 @@ class TransactionUseCase
             throw $e;
         }
     }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function find(string $id): ?Transaction
+    {
+        if ($transaction = $this->transactionRepository->find($id)) {
+            return $transaction;
+        }
+
+        throw new NotFoundException("Transaction {$id} not found");
+    }
 }
