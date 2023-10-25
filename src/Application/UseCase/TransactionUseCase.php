@@ -44,16 +44,12 @@ class TransactionUseCase
             throw new NotFoundException('Account not found');
         }
 
-        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key, true)) {
-            throw new NotFoundException('Pix not found');
-        }
-
         try {
             $transaction = new Transaction(
                 accountFrom: $account,
                 value: $value,
-                kind: $pix->kind,
-                key: $pix->key,
+                kind: KindPixKey::from($kind),
+                key: $key,
                 description: $description,
             );
 
