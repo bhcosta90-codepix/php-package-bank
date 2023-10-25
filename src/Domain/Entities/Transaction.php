@@ -41,4 +41,10 @@ class Transaction extends Data
             $this->addEvent(new CompletedEvent($this));
         }
     }
+
+    public function error(string $message)
+    {
+        $this->cancelDescription = $message;
+        $this->status = StatusTransaction::ERROR;
+    }
 }
