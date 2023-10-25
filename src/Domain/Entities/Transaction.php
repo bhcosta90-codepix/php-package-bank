@@ -6,6 +6,7 @@ namespace CodePix\Bank\Domain\Entities;
 
 use CodePix\Bank\Domain\Entities\Enum\PixKey\KindPixKey;
 use CodePix\Bank\Domain\Entities\Enum\Transaction\StatusTransaction;
+use CodePix\Bank\Domain\Events\Transaction\CompletedEvent;
 use CodePix\Bank\Domain\Events\Transaction\ConfirmedEvent;
 use CodePix\Bank\Domain\Events\Transaction\CreateEvent;
 use Costa\Entity\Data;
@@ -37,6 +38,7 @@ class Transaction extends Data
 
         if (empty($this->debit)) {
             $this->accountFrom->debit($this->value);
+            $this->addEvent(new CompletedEvent($this));
         } else {
             $this->accountFrom->credit($this->value);
         }

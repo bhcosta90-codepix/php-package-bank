@@ -98,6 +98,7 @@ class TransactionUseCase
             description: $description,
             debit: new Uuid($debit),
         );
+
         $transaction->completed();
 
         try {
@@ -115,6 +116,28 @@ class TransactionUseCase
             $this->eventManager->dispatch($transaction->getEvents());
 
             return $transaction;
+        } catch (Throwable $e) {
+            $this->databaseTransaction->rollback();
+            throw $e;
+        }
+    }
+
+    /**
+     * @throws Throwable
+     * @throws UseCaseException
+     */
+    public function confirmTransaction(string $id): Transaction
+    {
+        try {
+            if ($transaction = $this->transactionRepository->find($id)) {
+                $transaction->completed();
+                $this->transactionRepository->save($transaction);
+                $this->databaseTransaction->commit();
+                $this->eventManager->dispatch($transaction->getEvents());
+                return $transaction;
+            }
+
+            throw new UseCaseException();
         } catch (Throwable $e) {
             $this->databaseTransaction->rollback();
             throw $e;
