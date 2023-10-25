@@ -44,7 +44,7 @@ class TransactionUseCase
             throw new NotFoundException('Account not found');
         }
 
-        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key)) {
+        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key, true)) {
             throw new NotFoundException('Pix not found');
         }
 
@@ -58,9 +58,14 @@ class TransactionUseCase
             );
 
             $response = $this->transactionRepository->registerDebit($transaction);
+            $pixUpdate = $this->pixKeyRepository->updateAccount($pix->account);
 
             if (!$response) {
                 throw new UseCaseException('Register transaction with error');
+            }
+
+            if (!$pixUpdate) {
+                throw new UseCaseException('Update pix with error');
             }
 
             $this->eventManager->dispatch($transaction->getEvents());
@@ -90,6 +95,10 @@ class TransactionUseCase
             throw new NotFoundException('Account not found');
         }
 
+        if (!$pix = $this->pixKeyRepository->findKeyByKind($kind, $key, true)) {
+            throw new NotFoundException('Pix not found');
+        }
+
         $transaction = new Transaction(
             accountFrom: $account,
             value: $value,
@@ -100,6 +109,7 @@ class TransactionUseCase
         );
 
         $transaction->completed();
+        $pix->account->credit($transaction->value);
 
         try {
             $response = $this->transactionRepository->registerCredit($transaction);
@@ -108,7 +118,7 @@ class TransactionUseCase
                 throw new UseCaseException('Register transaction with error');
             }
 
-            if (!$this->pixKeyRepository->updateAccount($account)) {
+            if (!$this->pixKeyRepository->updateAccount($pix->account)) {
                 throw new UseCaseException('Unable to save account');
             }
 
@@ -138,7 +148,7 @@ class TransactionUseCase
                 return $transaction;
             }
 
-            throw new UseCaseException();
+            throw new NotFoundException('Transaction ' . $id . ' not found');
         } catch (Throwable $e) {
             $this->databaseTransaction->rollback();
             throw $e;
