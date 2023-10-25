@@ -155,6 +155,11 @@ class TransactionUseCase
         }
     }
 
+    public function index(string $account)
+    {
+        return $this->transactionRepository->getAll($account);
+    }
+
     /**
      * @throws NotFoundException
      */
